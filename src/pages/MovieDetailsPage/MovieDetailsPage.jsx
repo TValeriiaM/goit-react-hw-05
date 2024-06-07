@@ -38,7 +38,7 @@ export default function MovieDetailsPage() {
     return (
         <div>
         {isError && <ErrorText/>}
-        <NavLink to={backLinkRef.current}><IoIosArrowRoundBack /> Go back</NavLink>
+        <button><IoIosArrowRoundBack /><NavLink to={backLinkRef.current}> Go back</NavLink></button>
         {loading && <Loader />}
         {movieDetails && (
             <div>
@@ -75,6 +75,8 @@ export default function MovieDetailsPage() {
               </li>
             </ul>
             </div>
+        </div>
+        )}
             <div>
             <ul className={css.listDetails}>
                 <li>
@@ -90,8 +92,6 @@ export default function MovieDetailsPage() {
             </ul>
             </div>
             </div>
-        )}
-    </div>
 ) 
 }
 
