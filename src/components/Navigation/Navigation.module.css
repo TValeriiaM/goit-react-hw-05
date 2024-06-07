@@ -1,0 +1,23 @@
+.header {
+    box-shadow: 0 0 6px 0 #636060;
+}
+
+.list {
+    display: flex;
+    gap: 20px;
+    padding: 10px;
+}
+
+.link {
+    text-decoration: none;
+    color: black;
+    font-weight: 700;
+}
+
+.active {
+    color: #c22903;
+}
+
+.active:hover {
+    text-decoration: underline;
+}
