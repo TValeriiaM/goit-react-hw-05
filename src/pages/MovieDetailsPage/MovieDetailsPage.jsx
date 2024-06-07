@@ -36,7 +36,7 @@ export default function MovieDetailsPage() {
     
   
     return (
-    <div>
+        <div>
         {isError && <ErrorText/>}
         <NavLink to={backLinkRef.current}><IoIosArrowRoundBack /> Go back</NavLink>
         {loading && <Loader />}
@@ -51,7 +51,8 @@ export default function MovieDetailsPage() {
               alt={"poster"}
               width={250}
             />
-                <ul className={css.list}>
+            <div>
+                <ul className={css.listAboutMovie}>
               <li className={css.item}>
                 <h2 className={css.name}>
                   {movieDetails.title} ({movieDetails.release_date.slice(0, 4)})
@@ -73,11 +74,25 @@ export default function MovieDetailsPage() {
                 </p>
               </li>
             </ul>
-                </div>
+            </div>
+            <div>
+            <ul className={css.listDetails}>
+                <li>
+                    <NavLink to="cast" className={css.link}>
+                    MovieCast
+                    </NavLink>
+                </li>
+                <li>
+                    <NavLink to="reviews" className={css.link}>
+                    MovieReviews
+                    </NavLink>
+                </li>
+            </ul>
+            </div>
+            </div>
         )}
     </div>
-)
-    
+) 
 }
 
 
