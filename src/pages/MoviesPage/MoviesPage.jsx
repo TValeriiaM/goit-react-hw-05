@@ -41,7 +41,7 @@ export default function MoviesPage() {
     
     const handleSubmit = async (topic) => {
         setQuery(topic);
-        isParams.set({query: topic});
+        isParams.set("query", topic);
         setParams(isParams);
     };
     

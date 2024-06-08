@@ -1,6 +1,6 @@
 import { getMovieDetails } from "../../moviesSearchingAPI";
-import { useEffect, useState, useRef } from "react";
-import { useParams, useLocation, NavLink } from "react-router-dom";
+import { useEffect, useState, useRef, Suspense } from "react";
+import { useParams, useLocation, NavLink, Outlet } from "react-router-dom";
 import { IoIosArrowRoundBack } from "react-icons/io";
 import Loader from "../../components/Loader/Loader";
 import ErrorText from "../../components/ErrorText/ErrorText";
@@ -10,18 +10,18 @@ export default function MovieDetailsPage() {
   const [movieDetails, setMovieDetails] = useState(null);
   const [loading, setLoading] = useState(false);
   const [isError, setError] = useState(false);
-  const {movieID} = useParams();
+  const {movieId} = useParams();
   const location = useLocation();
   const backLinkRef = useRef(location.state ?? "/movies");
   const defaultImg = '<https://dl-media.viber.com/10/share/2/long/vibes/icon/image/0x0/95e0/5688fdffb84ff8bed4240bcf3ec5ac81ce591d9fa9558a3a968c630eaba195e0.jpg>'
   
   useEffect(() => {
-    if (!movieID) return;
+    if (!movieId) return;
       async function fetchMoviesDetails() {
        try{
         setError(false);
         setLoading(true);
-           const {data} = await getMovieDetails(movieID);
+           const data = await getMovieDetails(movieId);
         setMovieDetails(data);
        }
        catch {
@@ -32,7 +32,7 @@ export default function MovieDetailsPage() {
        }
       }
     fetchMoviesDetails()
-  }, [movieID])
+  }, [movieId])
     
   
     return (
@@ -41,7 +41,8 @@ export default function MovieDetailsPage() {
         <button><IoIosArrowRoundBack /><NavLink to={backLinkRef.current}> Go back</NavLink></button>
         {loading && <Loader />}
         {movieDetails && (
-            <div>
+                <div>
+                <section>
                 <img
               src={
                 movieDetails.poster_path
@@ -51,7 +52,7 @@ export default function MovieDetailsPage() {
               alt={"poster"}
               width={250}
             />
-            <div>
+            
                 <ul className={css.listAboutMovie}>
               <li className={css.item}>
                 <h2 className={css.name}>
@@ -73,11 +74,11 @@ export default function MovieDetailsPage() {
                   {movieDetails.genres.map(genre => genre.name).join(', ')}
                 </p>
               </li>
-            </ul>
-            </div>
-        </div>
-        )}
-            <div>
+            </ul>            
+            </section>
+        
+            <section>
+            <h4 className={css.subtitle}>Additional information</h4>
             <ul className={css.listDetails}>
                 <li>
                     <NavLink to="cast" className={css.link}>
@@ -89,8 +90,13 @@ export default function MovieDetailsPage() {
                     MovieReviews
                     </NavLink>
                 </li>
-            </ul>
-            </div>
+                </ul>
+                <Suspense>
+                    <Outlet/>
+                </Suspense>
+            </section>
+                </div>
+            )}
             </div>
 ) 
 }
