@@ -1,0 +1,18 @@
+.container {
+    margin-top: 20px;
+    margin-left: 40px;
+}
+
+.castImg {
+    list-style: none;
+    margin-bottom: 16px;
+}
+
+.castItem {
+    list-style: disc;
+}
+
+.castName {
+    margin-bottom: 8px;
+}
+

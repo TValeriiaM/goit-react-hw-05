@@ -32,17 +32,22 @@ export default function MovieCast() {
     }, [movieId]);
 
     return (
-    <div>
+    <div className={css.container}>
         {loading && <Loader/>}
         {isError && <ErrorText />}
         
         {movieCast &&
             (<ul className={css.castsList}>
             {movieCast.map(({ id, profile_path, name, character }) => (
-                <li key={id} className={css.castItem}>
-                    <img src={profile_path ? `https://image.tmdb.org/t/p/w200${profile_path}` : defaultImg} alt={name} />
-                    <h4 className={css.castName}>{name}</h4>
-                    <p className={css.castCharacter}>Character:{character}</p>
+                <li key={id} className={css.castImg}>
+                    <img src={profile_path ? `https://image.tmdb.org/t/p/w500${profile_path}` : defaultImg} alt={name} width={100}
+                        height={150} />
+                    <ul>
+                        <li className={css.castItem}>
+                        <h4 className={css.castName}>{name}</h4>
+                        <p>Character:  {character}</p>
+                        </li>
+                    </ul>
                 </li>
             ))}
             </ul>)

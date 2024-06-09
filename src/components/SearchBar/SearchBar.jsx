@@ -18,7 +18,7 @@ export default function SearchMoviesForm({ onSearch }) {
           actions.resetForm();
       }}>
         <Form className={css.form}>     
-        <Field className={css.input} type="text" name="query" placeholder="Search movies"/>
+        <Field className={css.input} type="text" name="query" placeholder="  Search movies"/>
         <button type="submit" className={css.button}>Search</button>
       </Form>
     </Formik>

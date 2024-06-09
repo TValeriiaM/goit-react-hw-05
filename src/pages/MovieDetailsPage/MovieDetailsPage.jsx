@@ -38,11 +38,11 @@ export default function MovieDetailsPage() {
     return (
         <div>
         {isError && <ErrorText/>}
-        <button><IoIosArrowRoundBack /><NavLink to={backLinkRef.current}> Go back</NavLink></button>
+        <button className={css.button}><IoIosArrowRoundBack /><NavLink to={backLinkRef.current}> Go back</NavLink></button>
         {loading && <Loader />}
         {movieDetails && (
                 <div>
-                <section>
+                <section className={css.movieDescribe}>
                 <img
               src={
                 movieDetails.poster_path
@@ -55,43 +55,43 @@ export default function MovieDetailsPage() {
             
                 <ul className={css.listAboutMovie}>
               <li className={css.item}>
-                <h2 className={css.name}>
+                <h2>
                   {movieDetails.title} ({movieDetails.release_date.slice(0, 4)})
                 </h2>
               </li>
               <li className={css.item}>
-                <p className={css.title}>
+                <p>
                   User score: {Math.round(movieDetails.vote_average * 10)}%
                 </p>
               </li>
               <li className={css.item}>
                 <h3 className={css.title}>Overview</h3>
-                <p className={css.text}>{movieDetails.overview}</p>
+                <p>{movieDetails.overview}</p>
               </li>
               <li className={css.item}>
                 <h3 className={css.title}>Genres</h3>
-                <p className={css.text}>
+                <p>
                   {movieDetails.genres.map(genre => genre.name).join(', ')}
                 </p>
               </li>
             </ul>            
             </section>
-        
+          {loading && <Loader />} 
             <section>
-            <h4 className={css.subtitle}>Additional information</h4>
+            <h4 className={css.detailsTitle}>Additional information</h4>
             <ul className={css.listDetails}>
-                <li>
+                <li className={css.listItem}>
                     <NavLink to="cast" className={css.link}>
-                    MovieCast
+                    Cast
                     </NavLink>
                 </li>
-                <li>
+                <li className={css.listItem}>
                     <NavLink to="reviews" className={css.link}>
-                    MovieReviews
+                    Reviews
                     </NavLink>
                 </li>
                 </ul>
-                <Suspense>
+                <Suspense fallback={<Loader/>}>
                     <Outlet/>
                 </Suspense>
             </section>

@@ -1,0 +1,30 @@
+.form {
+    margin-top: 16px;
+    margin-left: 12px;
+}
+
+.button {
+    height: 32px;
+    padding-left: 8px;
+    padding-right: 8px;
+    width: auto;
+    border: 1px solid #b9b8b8;
+    
+}
+
+.button:active {
+    background-color: #969292;
+
+}
+
+.input {
+    height: 32px;
+    width: 340px;
+    padding: 0;
+    border: 1px solid #b9b8b8;
+    outline: none;
+}
+
+.input:hover {
+    border-color: rgb(36, 140, 245);
+}

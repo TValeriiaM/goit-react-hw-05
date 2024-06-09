@@ -1,0 +1,45 @@
+.button {
+    display: flex;
+    width: 100px;
+    margin-top: 4px;
+    margin-bottom: 4px;
+    border: 1px solid #b9b8b8;
+    border-radius: 4px;
+    align-items: center;
+    justify-content: center;
+}
+
+.movieDescribe {
+    display: flex;
+    height: auto;
+    padding-bottom: 8px;
+    gap: 24px;
+    margin-bottom: 32px;
+    border-bottom: 1px solid #b9b8b8;
+}
+
+.listAboutMovie {
+    list-style: none;
+}
+
+.item {
+    margin-bottom: 12px;
+}
+
+.title {
+   margin-bottom: 12px; 
+}
+
+.detailsTitle {
+    margin-left: 20px;
+}
+
+.listDetails {
+    margin-top: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #b9b8b8;
+}
+
+.listItem {
+    margin-left: 40px;
+}
