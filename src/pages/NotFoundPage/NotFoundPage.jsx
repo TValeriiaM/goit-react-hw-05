@@ -4,13 +4,13 @@ import css from "./NotFoundPage.module.css"
 export default function NotFoundPage() {
   return (
     <div className={css.container}>
-      <h3 className={css.title}>Page does not exist</h3>
-      <p className={css.text}>
+      <h2>Page does not exist</h2>
+      <h3>
         Go back to{" "}
-        <Link className={css.link} to="/">
+        <Link to="/">
           Home page
         </Link>
-      </p>
+      </h3>
     </div>
   );
 }
