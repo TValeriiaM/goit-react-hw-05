@@ -10,10 +10,10 @@ export default function MovieDetailsPage() {
   const [movieDetails, setMovieDetails] = useState(null);
   const [loading, setLoading] = useState(false);
   const [isError, setError] = useState(false);
-  const {movieId} = useParams();
+  const { movieId } = useParams();
   const location = useLocation();
   const backLinkRef = useRef(location.state ?? "/movies");
-  const defaultImg = '<https://dl-media.viber.com/10/share/2/long/vibes/icon/image/0x0/95e0/5688fdffb84ff8bed4240bcf3ec5ac81ce591d9fa9558a3a968c630eaba195e0.jpg>'
+  const defaultImg = 'https://dl-media.viber.com/10/share/2/long/vibes/icon/image/0x0/95e0/5688fdffb84ff8bed4240bcf3ec5ac81ce591d9fa9558a3a968c630eaba195e0.jpg';
   
   useEffect(() => {
     if (!movieId) return;
@@ -38,7 +38,7 @@ export default function MovieDetailsPage() {
     return (
         <div>
         {isError && <ErrorText/>}
-        <button className={css.button}><IoIosArrowRoundBack /><NavLink to={backLinkRef.current}> Go back</NavLink></button>
+        <NavLink to={backLinkRef.current} className={css.button}><IoIosArrowRoundBack /> Go back</NavLink>
         {loading && <Loader />}
         {movieDetails && (
                 <div>

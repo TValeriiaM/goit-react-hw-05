@@ -8,21 +8,21 @@ import MovieList from "../../components/MovieList/MovieList";
 import ErrorText from "../../components/ErrorText/ErrorText";
 
 export default function MoviesPage() {
-    const [movies, setMovies] = useState([]);
+    const [searchMovies, setMovies] = useState([]);
     const [loading, setLoading] = useState(false);
     const [isError, setError] = useState(false);
-    const [isParams, setParams] = useSearchParams();
-    const [query, setQuery] = useState("");
+    const [searchManyParams, setManyParams] = useSearchParams();
+    const [searchQuery, setQuery] = useState("");
 
     useEffect(() => {
-        if (!query) {
+        if (!searchQuery) {
       return
     }
         async function fetchMovies() {
             try {
                 setLoading(true);
                 setError(false);
-                const { results } = await getSearchMovies(query || isParams.get("query"));
+                const { results } = await getSearchMovies(searchQuery || searchManyParams.get("query"));
                 if (results.length === 0) {
           toast("Sorry! There are no movies for your request");
           return
@@ -37,12 +37,12 @@ export default function MoviesPage() {
         }    
         } 
         fetchMovies();
-    }, [query, isParams])
+    }, [searchQuery, searchManyParams])
     
     const handleSubmit = async (topic) => {
         setQuery(topic);
-        isParams.set("query", topic);
-        setParams(isParams);
+        searchManyParams.set("query", topic);
+        setManyParams(searchManyParams);
     };
     
     return (
@@ -50,7 +50,7 @@ export default function MoviesPage() {
             <SearchMoviesForm onSearch={handleSubmit} />
             {loading && <Loader />}
             {isError && <ErrorText />}
-            {movies.length > 0 && <MovieList movies={movies} />}
+            {searchMovies.length > 0 && <MovieList movies={searchMovies} />}
         </div>
     )
 }
