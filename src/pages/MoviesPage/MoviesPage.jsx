@@ -12,7 +12,7 @@ export default function MoviesPage() {
     const [loading, setLoading] = useState(false);
     const [isError, setError] = useState(false);
     const [searchManyParams, setManyParams] = useSearchParams();
-    const [searchQuery, setQuery] = useState("");
+    const searchQuery = searchManyParams.get("query")??'';
 
     useEffect(() => {
         if (!searchQuery) {
@@ -22,7 +22,7 @@ export default function MoviesPage() {
             try {
                 setLoading(true);
                 setError(false);
-                const { results } = await getSearchMovies(searchQuery || searchManyParams.get("query"));
+                const { results } = await getSearchMovies(searchQuery);
                 if (results.length === 0) {
           toast("Sorry! There are no movies for your request");
           return
@@ -37,10 +37,9 @@ export default function MoviesPage() {
         }    
         } 
         fetchMovies();
-    }, [searchQuery, searchManyParams])
+    }, [searchQuery])
     
     const handleSubmit = async (topic) => {
-        setQuery(topic);
         searchManyParams.set("query", topic);
         setManyParams(searchManyParams);
     };
